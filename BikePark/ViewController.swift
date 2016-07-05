@@ -12,14 +12,15 @@ import Alamofire
 
 class ViewController: UIViewController  {
     
-    
+      
     override func viewDidLoad() {
         super.viewDidLoad()
         
         //Google Maps API Key
-        GMSServices.provideAPIKey("AIzaSyB42xpf3dn0eD6p4wNE9U-05TVgZlJqKnM")
+        GMSServices.provideAPIKey("AIzaSyCO5vvTi1fqTOCGscJ3EtsFu0BxNk_CcJ0")
+        
         //Position maps starting point
-        let camera = GMSCameraPosition.cameraWithLatitude(54.5973,longitude: -5.9301, zoom: 10)
+        let camera = GMSCameraPosition.cameraWithLatitude(54.5973,longitude: -5.9301, zoom: 13)
         let mapView = GMSMapView.mapWithFrame(CGRectZero, camera: camera)
         mapView.myLocationEnabled = true
         self.view = mapView
@@ -49,15 +50,23 @@ class ViewController: UIViewController  {
                     location.longitude = lon_doub
                     
                     let marker = GMSMarker()
+ 
+                    marker.appearAnimation = kGMSMarkerAnimationPop
+                    marker.flat = true
                     marker.position = CLLocationCoordinate2DMake(location.latitude!, location.longitude!)
                     marker.title = location.descript
-                    //marker.snippet = "Australia"
+                    
                     marker.map = mapView
                 }
                 
             }
     }
     //End viewDidLoad()
+
+    
+        
+    
+    
     
     
 
