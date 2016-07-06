@@ -67,7 +67,7 @@ class ViewController: UIViewController, UISearchBarDelegate, LocateOnTheMap {
             let position = CLLocationCoordinate2DMake(lat, lon)
             let marker = GMSMarker(position: position)
             
-            let camera = GMSCameraPosition.cameraWithLatitude(lat, longitude: lon, zoom: 10)
+            let camera = GMSCameraPosition.cameraWithLatitude(lat, longitude: lon, zoom: 16)
             self.mapView.camera = camera
             
             marker.title = "Address: \(title)"
@@ -138,6 +138,7 @@ class ViewController: UIViewController, UISearchBarDelegate, LocateOnTheMap {
                     let marker = GMSMarker()
                     marker.position = CLLocationCoordinate2DMake(location.latitude!, location.longitude!)
                     marker.title = location.descript
+                    marker.icon = GMSMarker.markerImageWithColor(UIColor.blueColor())
                     marker.map = self.mapView
                 }
         }
