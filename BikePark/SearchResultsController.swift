@@ -1,8 +1,8 @@
 //
-//  SearchResultController.swift
+//  SearchResultsController.swift
 //  BikePark
 //
-//  Created by James Cox on 05/07/2016.
+//  Created by James Cox on 06/07/2016.
 //  Copyright © 2016 James Cox. All rights reserved.
 //
 

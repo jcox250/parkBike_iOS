@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2548C3741D2D1CE400E8D261 /* SearchResultsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2548C3731D2D1CE400E8D261 /* SearchResultsController.swift */; };
 		2559EF341D29776E009E17CB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2559EF331D29776E009E17CB /* AppDelegate.swift */; };
 		2559EF361D29776E009E17CB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2559EF351D29776E009E17CB /* ViewController.swift */; };
 		2559EF391D29776E009E17CB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2559EF371D29776E009E17CB /* Main.storyboard */; };
@@ -15,7 +16,6 @@
 		2559EF491D29776E009E17CB /* BikeParkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2559EF481D29776E009E17CB /* BikeParkTests.swift */; };
 		2559EF541D29776E009E17CB /* BikeParkUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2559EF531D29776E009E17CB /* BikeParkUITests.swift */; };
 		25A14E691D2A9E66000D8B90 /* JSONParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A14E681D2A9E66000D8B90 /* JSONParser.swift */; };
-		25A98A521D2C149900BD2F2A /* SearchResultController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A98A511D2C149900BD2F2A /* SearchResultController.swift */; };
 		25DF9B3D1D2AAB6800848364 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25DF9B3C1D2AAB6800848364 /* Location.swift */; };
 		27DF5651C3CBD5B73BD2577C /* Pods_BikePark.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20740F0E3E068C73F7B54068 /* Pods_BikePark.framework */; };
 		B3BFE5670968132E1A498016 /* Pods_BikeParkTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1F8DE5A6F706391D0367364 /* Pods_BikeParkTests.framework */; };
@@ -43,6 +43,7 @@
 		0AFF5649AAC8B7347E353C00 /* Pods-BikeParkTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BikeParkTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BikeParkTests/Pods-BikeParkTests.debug.xcconfig"; sourceTree = "<group>"; };
 		152DC09C119BCFAC5914211B /* Pods-BikeParkUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BikeParkUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BikeParkUITests/Pods-BikeParkUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		20740F0E3E068C73F7B54068 /* Pods_BikePark.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BikePark.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2548C3731D2D1CE400E8D261 /* SearchResultsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultsController.swift; sourceTree = "<group>"; };
 		2559EF301D29776E009E17CB /* BikePark.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BikePark.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2559EF331D29776E009E17CB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2559EF351D29776E009E17CB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = BikePark/ViewController.swift; sourceTree = SOURCE_ROOT; };
@@ -57,7 +58,6 @@
 		2559EF531D29776E009E17CB /* BikeParkUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeParkUITests.swift; sourceTree = "<group>"; };
 		2559EF551D29776E009E17CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		25A14E681D2A9E66000D8B90 /* JSONParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JSONParser.swift; path = BikePark/JSONParser.swift; sourceTree = SOURCE_ROOT; };
-		25A98A511D2C149900BD2F2A /* SearchResultController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultController.swift; sourceTree = "<group>"; };
 		25B3D99E1D29808A004AEA90 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		25DF9B3C1D2AAB6800848364 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		2C9308298D2F1AA0DB863657 /* Pods-BikeParkTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BikeParkTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-BikeParkTests/Pods-BikeParkTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -153,7 +153,7 @@
 				2559EF3F1D29776E009E17CB /* Info.plist */,
 				25A14E681D2A9E66000D8B90 /* JSONParser.swift */,
 				25DF9B3C1D2AAB6800848364 /* Location.swift */,
-				25A98A511D2C149900BD2F2A /* SearchResultController.swift */,
+				2548C3731D2D1CE400E8D261 /* SearchResultsController.swift */,
 			);
 			path = BikePark;
 			sourceTree = "<group>";
@@ -449,8 +449,8 @@
 				2559EF361D29776E009E17CB /* ViewController.swift in Sources */,
 				2559EF341D29776E009E17CB /* AppDelegate.swift in Sources */,
 				25DF9B3D1D2AAB6800848364 /* Location.swift in Sources */,
+				2548C3741D2D1CE400E8D261 /* SearchResultsController.swift in Sources */,
 				25A14E691D2A9E66000D8B90 /* JSONParser.swift in Sources */,
-				25A98A521D2C149900BD2F2A /* SearchResultController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
