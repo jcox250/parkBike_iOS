@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="bAM-aQ-aEO">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--BikePark-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="BikePark" customModuleProvider="target" sceneMemberID="viewController">
@@ -17,10 +17,63 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" title="BikePark" id="cYk-dE-n8m">
+                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="search" id="ndB-cX-wzI">
+                            <connections>
+                                <action selector="searchWithAddress:" destination="BYZ-38-t0r" id="XCz-hT-gRj"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="searchBar" destination="ndB-cX-wzI" id="N4F-ZG-JrP"/>
+                        <outlet property="searchDisplayController" destination="YQG-9L-MQK" id="M8Z-Gb-9mv"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="ypP-yO-oPW">
+                    <connections>
+                        <outlet property="delegate" destination="BYZ-38-t0r" id="nxp-Kd-yUx"/>
+                        <outlet property="searchContentsController" destination="BYZ-38-t0r" id="kX6-aa-wHK"/>
+                        <outlet property="searchResultsDataSource" destination="BYZ-38-t0r" id="t9k-xa-6go"/>
+                        <outlet property="searchResultsDelegate" destination="BYZ-38-t0r" id="7Hb-kD-dUK"/>
+                    </connections>
+                </searchDisplayController>
+                <searchDisplayController id="Aml-ca-ZsB">
+                    <connections>
+                        <outlet property="delegate" destination="BYZ-38-t0r" id="YId-5S-jrH"/>
+                        <outlet property="searchContentsController" destination="BYZ-38-t0r" id="3hB-Hl-KGP"/>
+                        <outlet property="searchResultsDataSource" destination="BYZ-38-t0r" id="G9v-Vr-dCY"/>
+                        <outlet property="searchResultsDelegate" destination="BYZ-38-t0r" id="Fwc-w4-Adz"/>
+                    </connections>
+                </searchDisplayController>
+                <searchDisplayController id="YQG-9L-MQK">
+                    <connections>
+                        <outlet property="delegate" destination="BYZ-38-t0r" id="U0D-Hw-6C5"/>
+                        <outlet property="searchContentsController" destination="BYZ-38-t0r" id="lWx-hI-99b"/>
+                        <outlet property="searchResultsDataSource" destination="BYZ-38-t0r" id="gjf-ca-CaQ"/>
+                        <outlet property="searchResultsDelegate" destination="BYZ-38-t0r" id="B8K-LW-5xG"/>
+                    </connections>
+                </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="565" y="369"/>
+            <point key="canvasLocation" x="-125" y="339"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="maQ-H8-BAt">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="bAM-aQ-aEO" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="CeE-hN-hfO">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="6VE-ue-9OM"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vie-ED-KqJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-825" y="339"/>
         </scene>
     </scenes>
 </document>
