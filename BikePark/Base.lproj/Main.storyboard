@@ -18,7 +18,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="BikePark" id="cYk-dE-n8m">
-                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="search" id="ndB-cX-wzI">
+                        <barButtonItem key="rightBarButtonItem" systemItem="search" id="ndB-cX-wzI">
                             <connections>
                                 <action selector="searchWithAddress:" destination="BYZ-38-t0r" id="XCz-hT-gRj"/>
                             </connections>

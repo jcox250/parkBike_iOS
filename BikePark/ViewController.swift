@@ -21,6 +21,7 @@ class ViewController: UIViewController, UISearchBarDelegate, LocateOnTheMap {
     let apikey = "AIzaSyCO5vvTi1fqTOCGscJ3EtsFu0BxNk_CcJ0"
     
     var mapView: GMSMapView!
+    var markerView: UIImageView!
     var searchResultController: SearchResultsController!
     var resultsArray = [String]()
     
@@ -96,15 +97,18 @@ class ViewController: UIViewController, UISearchBarDelegate, LocateOnTheMap {
     }
     
     
-    //MARK: Actions
-
+    
+    //Draw the map and markers
     func createMap () {
+        
         //Google Maps API Key
         GMSServices.provideAPIKey(apikey)
         
         //Position maps starting point
         let camera = GMSCameraPosition.cameraWithLatitude(54.5973,longitude: -5.9301, zoom: 13)
         mapView = GMSMapView.mapWithFrame(CGRectZero, camera: camera)
+        
+        //Customise map settings
         mapView.settings.myLocationButton = true
         mapView.settings.compassButton = true
         mapView.myLocationEnabled = true
@@ -112,83 +116,45 @@ class ViewController: UIViewController, UISearchBarDelegate, LocateOnTheMap {
         
         
         //GET request to JSON data containing locations for map markers
-        let url = "http://jcoxcv.com/service.php"
-        Alamofire.request(.GET, url, parameters: [:])
-            .responseJSON { response in
+        Alamofire.request(.GET, "http://jcoxcv.com/service.php", parameters: [:]).responseJSON { response in
                 
-                let jsonResult = response.result.value
+            let jsonResult = response.result.value
                 
-                for res in jsonResult as! [AnyObject] {
+            for res in jsonResult as! [AnyObject] {
                     
-                    //Select JSON data
-                    let descript = res["rack_description"] as? String
-                    let latitude = res["rack_latitude"] as? String
-                    let longitude = res["rack_longitude"] as? String
+                //Select JSON data
+                let descript = res["rack_description"] as? String
+                let latitude = res["rack_latitude"] as? String
+                let longitude = res["rack_longitude"] as? String
+                
+                //Convert latitude from string to double
+                let lat_doub = Double(latitude!)!
+                let lon_doub = Double(longitude!)!
                     
-                    //Convert latitude from string to double
-                    let lat_doub = Double(latitude!)!
-                    let lon_doub = Double(longitude!)!
-                    
-                    //Instantiate a location object
-                    let location = Location()
+                //Create location object
+                let location = Location()
                     location.descript = descript
                     location.latitude = lat_doub
                     location.longitude = lon_doub
+                
                     
-                    let marker = GMSMarker()
+                //Custom marker
+                let cyclingMarker = UIImage(named: "cycling.png")!.imageWithRenderingMode(.AlwaysTemplate)
+                self.markerView = UIImageView(image: cyclingMarker)
+                let marker = GMSMarker()
                     marker.position = CLLocationCoordinate2DMake(location.latitude!, location.longitude!)
                     marker.title = location.descript
-                    marker.icon = GMSMarker.markerImageWithColor(UIColor.blueColor())
+                    marker.iconView = self.markerView
+                    marker.tracksViewChanges = true
                     marker.map = self.mapView
-                }
+            }
         }
 
     }
-    
-
-    
-    
-
-
-    
-    
-   
-
-    
-    //Geocoding
-    //    func getLatLngForZip(zipCode: String) {
-    //        let url = NSURL(string: "\(baseUrl)address=\(zipCode)&key=\(apikey)")
-    //        let data = NSData(contentsOfURL: url!)
-    //        let json = try! NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.AllowFragments) as! NSDictionary
-    //        if let result = json["results"] as? NSArray {
-    //            if let geometry = result[0]["geometry"] as? NSDictionary {
-    //                if let location = geometry["location"] as? NSDictionary {
-    //                    let latitude = location["lat"] as! Float
-    //                    let longitude = location["lng"] as! Float
-    //                    print("\n\(latitude), \(longitude)")
-    //                }
-    //            }
-    //        }
-    //    }
-    
-    //Reverse Geocoding
-    //    func getAddressForLatLng(latitude: String, longitude: String) {
-    //        let url = NSURL(string: "\(baseUrl)latlng=\(latitude),\(longitude)&key=\(apikey)")
-    //        let data = NSData(contentsOfURL: url!)
-    //        let json = try! NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.AllowFragments) as! NSDictionary
-    //        if let result = json["results"] as? NSArray {
-    //            if let address = result[0]["address_components"] as? NSArray {
-    //                let number = address[0]["short_name"] as! String
-    //                let street = address[1]["short_name"] as! String
-    //                let city = address[2]["short_name"] as! String
-    //                let state = address[4]["short_name"] as! String
-    //                let zip = address[6]["short_name"] as! String
-    //                print("\n\(number) \(street), \(city), \(state) \(zip)")
-    //            }
-    //        }
-    //    }
-
 }
+
+
+
 
 
 extension ViewController: GMSAutocompleteViewControllerDelegate {

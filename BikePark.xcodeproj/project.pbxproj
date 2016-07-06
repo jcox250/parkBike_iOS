@@ -15,6 +15,7 @@
 		2559EF3E1D29776E009E17CB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2559EF3C1D29776E009E17CB /* LaunchScreen.storyboard */; };
 		2559EF491D29776E009E17CB /* BikeParkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2559EF481D29776E009E17CB /* BikeParkTests.swift */; };
 		2559EF541D29776E009E17CB /* BikeParkUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2559EF531D29776E009E17CB /* BikeParkUITests.swift */; };
+		256611F61D2D68E900B5D83F /* cycling.png in Resources */ = {isa = PBXBuildFile; fileRef = 256611F51D2D68E900B5D83F /* cycling.png */; };
 		25A14E691D2A9E66000D8B90 /* JSONParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A14E681D2A9E66000D8B90 /* JSONParser.swift */; };
 		25DF9B3D1D2AAB6800848364 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25DF9B3C1D2AAB6800848364 /* Location.swift */; };
 		27DF5651C3CBD5B73BD2577C /* Pods_BikePark.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20740F0E3E068C73F7B54068 /* Pods_BikePark.framework */; };
@@ -57,6 +58,7 @@
 		2559EF4F1D29776E009E17CB /* BikeParkUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BikeParkUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2559EF531D29776E009E17CB /* BikeParkUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeParkUITests.swift; sourceTree = "<group>"; };
 		2559EF551D29776E009E17CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		256611F51D2D68E900B5D83F /* cycling.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cycling.png; sourceTree = SOURCE_ROOT; };
 		25A14E681D2A9E66000D8B90 /* JSONParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JSONParser.swift; path = BikePark/JSONParser.swift; sourceTree = SOURCE_ROOT; };
 		25B3D99E1D29808A004AEA90 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		25DF9B3C1D2AAB6800848364 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
@@ -154,6 +156,7 @@
 				25A14E681D2A9E66000D8B90 /* JSONParser.swift */,
 				25DF9B3C1D2AAB6800848364 /* Location.swift */,
 				2548C3731D2D1CE400E8D261 /* SearchResultsController.swift */,
+				256611F51D2D68E900B5D83F /* cycling.png */,
 			);
 			path = BikePark;
 			sourceTree = "<group>";
@@ -299,6 +302,7 @@
 				2559EF3E1D29776E009E17CB /* LaunchScreen.storyboard in Resources */,
 				2559EF3B1D29776E009E17CB /* Assets.xcassets in Resources */,
 				2559EF391D29776E009E17CB /* Main.storyboard in Resources */,
+				256611F61D2D68E900B5D83F /* cycling.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
