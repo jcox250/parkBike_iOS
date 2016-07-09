@@ -9,9 +9,10 @@
 import UIKit
 import GoogleMaps
 import Alamofire
+import CoreLocation
 
 
-class ViewController: UIViewController, UISearchBarDelegate, LocateOnTheMap {
+class ViewController: UIViewController, UISearchBarDelegate, CLLocationManagerDelegate, LocateOnTheMap {
     
     //MARK: Properties
     
@@ -19,6 +20,7 @@ class ViewController: UIViewController, UISearchBarDelegate, LocateOnTheMap {
     @IBOutlet weak var googleMapsViewContainer: UIView!
     let baseUrl = "https://maps.googleapis.com/maps/api/geocode/json?"
     let apikey = "AIzaSyCO5vvTi1fqTOCGscJ3EtsFu0BxNk_CcJ0"
+    let locationManager = CLLocationManager()
     
     var mapView: GMSMapView!
     var markerView: UIImageView!
@@ -29,8 +31,12 @@ class ViewController: UIViewController, UISearchBarDelegate, LocateOnTheMap {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         createMap()
+ 
     }
+    
+
     
     
    
@@ -101,11 +107,15 @@ class ViewController: UIViewController, UISearchBarDelegate, LocateOnTheMap {
     //Draw the map and markers
     func createMap () {
         
+        let cus_lat = self.locationManager.location?.coordinate.latitude
+        let cus_lon = self.locationManager.location?.coordinate.longitude
+        
+        
         //Google Maps API Key
         GMSServices.provideAPIKey(apikey)
         
         //Position maps starting point
-        let camera = GMSCameraPosition.cameraWithLatitude(54.5973,longitude: -5.9301, zoom: 13)
+        let camera = GMSCameraPosition.cameraWithLatitude(cus_lat!,longitude: cus_lon!, zoom: 16)
         mapView = GMSMapView.mapWithFrame(CGRectZero, camera: camera)
         
         //Customise map settings
@@ -117,11 +127,11 @@ class ViewController: UIViewController, UISearchBarDelegate, LocateOnTheMap {
         
         //GET request to JSON data containing locations for map markers
         Alamofire.request(.GET, "http://jcoxcv.com/service.php", parameters: [:]).responseJSON { response in
-                
+            
             let jsonResult = response.result.value
-                
+            
             for res in jsonResult as! [AnyObject] {
-                    
+                
                 //Select JSON data
                 let descript = res["rack_description"] as? String
                 let latitude = res["rack_latitude"] as? String
@@ -130,23 +140,22 @@ class ViewController: UIViewController, UISearchBarDelegate, LocateOnTheMap {
                 //Convert latitude from string to double
                 let lat_doub = Double(latitude!)!
                 let lon_doub = Double(longitude!)!
-                    
+                
                 //Create location object
                 let location = Location()
-                    location.descript = descript
-                    location.latitude = lat_doub
-                    location.longitude = lon_doub
+                location.descript = descript
+                location.latitude = lat_doub
+                location.longitude = lon_doub
                 
-                    
                 //Custom marker
                 let cyclingMarker = UIImage(named: "cycling.png")!.imageWithRenderingMode(.AlwaysTemplate)
                 self.markerView = UIImageView(image: cyclingMarker)
                 let marker = GMSMarker()
-                    marker.position = CLLocationCoordinate2DMake(location.latitude!, location.longitude!)
-                    marker.title = location.descript
-                    marker.iconView = self.markerView
-                    marker.tracksViewChanges = true
-                    marker.map = self.mapView
+                marker.position = CLLocationCoordinate2DMake(location.latitude!, location.longitude!)
+                marker.title = location.descript
+                marker.iconView = self.markerView
+                marker.tracksViewChanges = true
+                marker.map = self.mapView
             }
         }
 
