@@ -13,18 +13,18 @@ import CoreLocation
 import MapKit
 
 
-class ViewController: UIViewController, UISearchBarDelegate, CLLocationManagerDelegate {
+class ViewController: UIViewController, UISearchBarDelegate, LocateOnTheMap, CLLocationManagerDelegate {
     
     //MARK: Properties
     
     @IBOutlet var mapView: MKMapView!
     @IBOutlet weak var searchBar: UIBarButtonItem!
-    @IBOutlet weak var googleMapsViewContainer: UIView!
+    
     let baseUrl = "https://maps.googleapis.com/maps/api/geocode/json?"
     let apikey = "AIzaSyCO5vvTi1fqTOCGscJ3EtsFu0BxNk_CcJ0"
     let locationManager = CLLocationManager()
     
-    var markerView: UIImageView!
+   
     var searchResultController: SearchResultsController!
     var resultsArray = [String]()
     
@@ -88,7 +88,12 @@ class ViewController: UIViewController, UISearchBarDelegate, CLLocationManagerDe
     
     
 
-
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(true)
+        
+        searchResultController = SearchResultsController()
+        searchResultController.delegate = self
+    }
     
     
     
@@ -108,6 +113,26 @@ class ViewController: UIViewController, UISearchBarDelegate, CLLocationManagerDe
         let searchController = UISearchController(searchResultsController: searchResultController)
         searchController.searchBar.delegate = self
         self.presentViewController(searchController, animated: true, completion: nil)
+    }
+    
+    
+    
+    func locateWithLongitude(lon: Double, andLatitude lat: Double, andTitle title: String) {
+        
+        dispatch_async(dispatch_get_main_queue()) { () -> Void in
+            let position = CLLocationCoordinate2DMake(lat, lon)
+            
+            let span = MKCoordinateSpanMake(0.01, 0.01)
+            let region = MKCoordinateRegion(center: position, span: span)
+            self.mapView.setRegion(region, animated: true)
+            
+            let marker = MKPointAnnotation()
+                marker.coordinate = position
+                marker.title = "Address: \(title)"
+            
+            self.mapView.addAnnotation(marker)
+    
+        }
     }
 
     
