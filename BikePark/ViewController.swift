@@ -10,19 +10,20 @@ import UIKit
 import GoogleMaps
 import Alamofire
 import CoreLocation
+import MapKit
 
 
-class ViewController: UIViewController, UISearchBarDelegate, CLLocationManagerDelegate, LocateOnTheMap {
+class ViewController: UIViewController, UISearchBarDelegate, CLLocationManagerDelegate {
     
     //MARK: Properties
     
+    @IBOutlet var mapView: MKMapView!
     @IBOutlet weak var searchBar: UIBarButtonItem!
     @IBOutlet weak var googleMapsViewContainer: UIView!
     let baseUrl = "https://maps.googleapis.com/maps/api/geocode/json?"
     let apikey = "AIzaSyCO5vvTi1fqTOCGscJ3EtsFu0BxNk_CcJ0"
     let locationManager = CLLocationManager()
     
-    var mapView: GMSMapView!
     var markerView: UIImageView!
     var searchResultController: SearchResultsController!
     var resultsArray = [String]()
@@ -32,20 +33,63 @@ class ViewController: UIViewController, UISearchBarDelegate, CLLocationManagerDe
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        createMap()
+        //Get users location
+        let cus_lat = self.locationManager.location?.coordinate.latitude
+        let cus_lon = self.locationManager.location?.coordinate.longitude
+        print(cus_lat, cus_lon)
+        
+        let location = CLLocationCoordinate2D(
+            latitude: cus_lat!,
+            longitude: cus_lon!
+        )
+        
+        
+        //Map zoom level
+        let span = MKCoordinateSpanMake(0.05, 0.05)
+        let region = MKCoordinateRegion(center: location, span: span)
+        mapView.setRegion(region, animated: true)
+        
+        //GET request to JSON data containing locations for map markers
+        Alamofire.request(.GET, "http://jcoxcv.com/service.php", parameters: [:]).responseJSON { response in
+        
+            let jsonResult = response.result.value
+        
+            for res in jsonResult as! [AnyObject] {
+                let descript = res["rack_description"] as? String
+                let latitude = res["rack_latitude"] as? String
+                let longitude = res["rack_longitude"] as? String
+                        
+                let lat_doub = Double(latitude!)!
+                let lon_doub = Double(longitude!)!
+                        
+                //Create location object
+                let location = Location()
+                    location.descript = descript
+                    location.latitude = lat_doub
+                    location.longitude = lon_doub
+                        
+                        
+                let markerLocation = CLLocationCoordinate2D(
+                    latitude: location.latitude!,
+                    longitude: location.longitude!
+                )
+                        
+                        
+                let marker = MKPointAnnotation()
+                    marker.coordinate = markerLocation
+                    marker.title = location.descript
+                self.mapView.addAnnotation(marker)
+        
+            }
  
-    }
+        }
+    }//Viewdidload
+    
+    
     
 
+
     
-    
-   
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(true)
-        
-        searchResultController = SearchResultsController()
-        searchResultController.delegate = self
-    }
     
     
     
@@ -67,20 +111,6 @@ class ViewController: UIViewController, UISearchBarDelegate, CLLocationManagerDe
     }
 
     
-    
-    func locateWithLongitude(lon: Double, andLatitude lat: Double, andTitle title: String) {
-        
-        dispatch_async(dispatch_get_main_queue()) { () -> Void in
-            let position = CLLocationCoordinate2DMake(lat, lon)
-            let marker = GMSMarker(position: position)
-            
-            let camera = GMSCameraPosition.cameraWithLatitude(lat, longitude: lon, zoom: 16)
-            self.mapView.camera = camera
-            
-            marker.title = "Address: \(title)"
-            marker.map = self.mapView
-        }
-    }
     
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
         
@@ -105,61 +135,48 @@ class ViewController: UIViewController, UISearchBarDelegate, CLLocationManagerDe
     
     
     //Draw the map and markers
-    func createMap () {
-        
-        let cus_lat = self.locationManager.location?.coordinate.latitude
-        let cus_lon = self.locationManager.location?.coordinate.longitude
-        
-        
-        //Google Maps API Key
-        GMSServices.provideAPIKey(apikey)
-        
-        //Position maps starting point
-        let camera = GMSCameraPosition.cameraWithLatitude(cus_lat!,longitude: cus_lon!, zoom: 16)
-        mapView = GMSMapView.mapWithFrame(CGRectZero, camera: camera)
-        
-        //Customise map settings
-        mapView.settings.myLocationButton = true
-        mapView.settings.compassButton = true
-        mapView.myLocationEnabled = true
-        view = mapView
-        
-        
-        //GET request to JSON data containing locations for map markers
-        Alamofire.request(.GET, "http://jcoxcv.com/service.php", parameters: [:]).responseJSON { response in
-            
-            let jsonResult = response.result.value
-            
-            for res in jsonResult as! [AnyObject] {
-                
-                //Select JSON data
-                let descript = res["rack_description"] as? String
-                let latitude = res["rack_latitude"] as? String
-                let longitude = res["rack_longitude"] as? String
-                
-                //Convert latitude from string to double
-                let lat_doub = Double(latitude!)!
-                let lon_doub = Double(longitude!)!
-                
-                //Create location object
-                let location = Location()
-                location.descript = descript
-                location.latitude = lat_doub
-                location.longitude = lon_doub
-                
-                //Custom marker
-                let cyclingMarker = UIImage(named: "cycling.png")!.imageWithRenderingMode(.AlwaysTemplate)
-                self.markerView = UIImageView(image: cyclingMarker)
-                let marker = GMSMarker()
-                marker.position = CLLocationCoordinate2DMake(location.latitude!, location.longitude!)
-                marker.title = location.descript
-                marker.iconView = self.markerView
-                marker.tracksViewChanges = true
-                marker.map = self.mapView
-            }
-        }
-
-    }
+//    func createMap () {
+//        
+//        let cus_lat = self.locationManager.location?.coordinate.latitude
+//        let cus_lon = self.locationManager.location?.coordinate.longitude
+//        
+//        
+//        
+//        //GET request to JSON data containing locations for map markers
+//        Alamofire.request(.GET, "http://jcoxcv.com/service.php", parameters: [:]).responseJSON { response in
+//            
+//            let jsonResult = response.result.value
+//            
+//            for res in jsonResult as! [AnyObject] {
+//                
+//                //Select JSON data
+//                let descript = res["rack_description"] as? String
+//                let latitude = res["rack_latitude"] as? String
+//                let longitude = res["rack_longitude"] as? String
+//                
+//                //Convert latitude from string to double
+//                let lat_doub = Double(latitude!)!
+//                let lon_doub = Double(longitude!)!
+//                
+//                //Create location object
+//                let location = Location()
+//                location.descript = descript
+//                location.latitude = lat_doub
+//                location.longitude = lon_doub
+//                
+//                //Custom marker
+//                let cyclingMarker = UIImage(named: "cycling.png")!.imageWithRenderingMode(.AlwaysTemplate)
+//                self.markerView = UIImageView(image: cyclingMarker)
+//                let marker = GMSMarker()
+//                marker.position = CLLocationCoordinate2DMake(location.latitude!, location.longitude!)
+//                marker.title = location.descript
+//                marker.iconView = self.markerView
+//                marker.tracksViewChanges = true
+//                marker.map = self.mapView
+//            }
+//        }
+//
+//    }
 }
 
 

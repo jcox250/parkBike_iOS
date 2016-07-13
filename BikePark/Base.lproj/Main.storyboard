@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="bAM-aQ-aEO">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--BikePark-->
@@ -15,7 +16,18 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Yod-dJ-a3f">
+                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                            </mapView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Yod-dJ-a3f" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="A54-Ph-0gn"/>
+                            <constraint firstItem="Yod-dJ-a3f" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="LxT-9J-IvQ"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Yod-dJ-a3f" secondAttribute="trailing" constant="-20" id="RWq-eG-V5s"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Yod-dJ-a3f" secondAttribute="bottom" id="ZKI-d2-VaO"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="BikePark" id="cYk-dE-n8m">
                         <barButtonItem key="rightBarButtonItem" systemItem="search" id="ndB-cX-wzI">
@@ -25,6 +37,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="mapView" destination="Yod-dJ-a3f" id="pjw-0w-Ehi"/>
                         <outlet property="searchBar" destination="ndB-cX-wzI" id="N4F-ZG-JrP"/>
                         <outlet property="searchDisplayController" destination="YQG-9L-MQK" id="M8Z-Gb-9mv"/>
                     </connections>
