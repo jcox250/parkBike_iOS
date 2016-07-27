@@ -33,6 +33,27 @@ class ViewController: UIViewController, UISearchBarDelegate, LocateOnTheMap, CLL
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        // Ask for Authorisation from the User.
+        self.locationManager.requestAlwaysAuthorization()
+        
+        // For use in foreground
+        self.locationManager.requestWhenInUseAuthorization()
+        
+        if CLLocationManager.locationServicesEnabled() {
+            self.locationManager.delegate = self
+            self.locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+            self.locationManager.startUpdatingLocation()
+        }
+        
+        
+        
+        
+        func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+            let locValue:CLLocationCoordinate2D = manager.location!.coordinate
+            print("locations = \(locValue.latitude) \(locValue.longitude)")
+        }
+        
         //Get users location
         let cus_lat = self.locationManager.location?.coordinate.latitude
         let cus_lon = self.locationManager.location?.coordinate.longitude
@@ -44,10 +65,13 @@ class ViewController: UIViewController, UISearchBarDelegate, LocateOnTheMap, CLL
         )
         
         
+        
+        
         //Map zoom level
         let span = MKCoordinateSpanMake(0.05, 0.05)
         let region = MKCoordinateRegion(center: location, span: span)
         mapView.setRegion(region, animated: true)
+        mapView.showsUserLocation = true
         
         //GET request to JSON data containing locations for map markers
         Alamofire.request(.GET, "http://jcoxcv.com/service.php", parameters: [:]).responseJSON { response in
@@ -202,6 +226,8 @@ class ViewController: UIViewController, UISearchBarDelegate, LocateOnTheMap, CLL
 //        }
 //
 //    }
+
+
 }
 
 
