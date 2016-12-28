@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		253AA3C31E12F7B600563F08 /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 253AA3C21E12F7B600563F08 /* Map.swift */; };
 		2548C3741D2D1CE400E8D261 /* SearchResultsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2548C3731D2D1CE400E8D261 /* SearchResultsController.swift */; };
 		2559EF341D29776E009E17CB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2559EF331D29776E009E17CB /* AppDelegate.swift */; };
 		2559EF361D29776E009E17CB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2559EF351D29776E009E17CB /* ViewController.swift */; };
@@ -16,8 +17,8 @@
 		2559EF491D29776E009E17CB /* BikeParkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2559EF481D29776E009E17CB /* BikeParkTests.swift */; };
 		2559EF541D29776E009E17CB /* BikeParkUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2559EF531D29776E009E17CB /* BikeParkUITests.swift */; };
 		256611F61D2D68E900B5D83F /* cycling.png in Resources */ = {isa = PBXBuildFile; fileRef = 256611F51D2D68E900B5D83F /* cycling.png */; };
-		25A14E691D2A9E66000D8B90 /* JSONParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A14E681D2A9E66000D8B90 /* JSONParser.swift */; };
-		25DF9B3D1D2AAB6800848364 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25DF9B3C1D2AAB6800848364 /* Location.swift */; };
+		259773351E13BF830030F0DA /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259773341E13BF830030F0DA /* LocationManager.swift */; };
+		259773391E13D0830030F0DA /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259773381E13D0830030F0DA /* Constants.swift */; };
 		27DF5651C3CBD5B73BD2577C /* Pods_BikePark.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20740F0E3E068C73F7B54068 /* Pods_BikePark.framework */; };
 		B3BFE5670968132E1A498016 /* Pods_BikeParkTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1F8DE5A6F706391D0367364 /* Pods_BikeParkTests.framework */; };
 		EDB5C955D4BF00E0970F061E /* Pods_BikeParkUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F17CC424B25CF7CCE745B0CD /* Pods_BikeParkUITests.framework */; };
@@ -44,6 +45,7 @@
 		0AFF5649AAC8B7347E353C00 /* Pods-BikeParkTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BikeParkTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BikeParkTests/Pods-BikeParkTests.debug.xcconfig"; sourceTree = "<group>"; };
 		152DC09C119BCFAC5914211B /* Pods-BikeParkUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BikeParkUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BikeParkUITests/Pods-BikeParkUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		20740F0E3E068C73F7B54068 /* Pods_BikePark.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BikePark.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		253AA3C21E12F7B600563F08 /* Map.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Map.swift; sourceTree = "<group>"; };
 		2548C3731D2D1CE400E8D261 /* SearchResultsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultsController.swift; sourceTree = "<group>"; };
 		2559EF301D29776E009E17CB /* BikePark.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BikePark.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2559EF331D29776E009E17CB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -59,9 +61,9 @@
 		2559EF531D29776E009E17CB /* BikeParkUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeParkUITests.swift; sourceTree = "<group>"; };
 		2559EF551D29776E009E17CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		256611F51D2D68E900B5D83F /* cycling.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cycling.png; sourceTree = SOURCE_ROOT; };
-		25A14E681D2A9E66000D8B90 /* JSONParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JSONParser.swift; path = BikePark/JSONParser.swift; sourceTree = SOURCE_ROOT; };
+		259773341E13BF830030F0DA /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		259773381E13D0830030F0DA /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		25B3D99E1D29808A004AEA90 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
-		25DF9B3C1D2AAB6800848364 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		2C9308298D2F1AA0DB863657 /* Pods-BikeParkTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BikeParkTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-BikeParkTests/Pods-BikeParkTests.release.xcconfig"; sourceTree = "<group>"; };
 		3010D13108B3899252B8E968 /* Pods-BikeParkUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BikeParkUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-BikeParkUITests/Pods-BikeParkUITests.release.xcconfig"; sourceTree = "<group>"; };
 		A0C9996B88E0E459A038B634 /* Pods-BikePark.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BikePark.release.xcconfig"; path = "Pods/Target Support Files/Pods-BikePark/Pods-BikePark.release.xcconfig"; sourceTree = "<group>"; };
@@ -153,10 +155,11 @@
 				2559EF3A1D29776E009E17CB /* Assets.xcassets */,
 				2559EF3C1D29776E009E17CB /* LaunchScreen.storyboard */,
 				2559EF3F1D29776E009E17CB /* Info.plist */,
-				25A14E681D2A9E66000D8B90 /* JSONParser.swift */,
-				25DF9B3C1D2AAB6800848364 /* Location.swift */,
 				2548C3731D2D1CE400E8D261 /* SearchResultsController.swift */,
 				256611F51D2D68E900B5D83F /* cycling.png */,
+				253AA3C21E12F7B600563F08 /* Map.swift */,
+				259773341E13BF830030F0DA /* LocationManager.swift */,
+				259773381E13D0830030F0DA /* Constants.swift */,
 			);
 			path = BikePark;
 			sourceTree = "<group>";
@@ -232,6 +235,7 @@
 				2559EF4C1D29776E009E17CB /* Frameworks */,
 				2559EF4D1D29776E009E17CB /* Resources */,
 				C90904BFDAC7BA6F2C5FA92B /* [CP] Copy Pods Resources */,
+				8B731776670AA3EA038DEE01 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -250,12 +254,13 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0730;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = "James Cox";
 				TargetAttributes = {
 					2559EF2F1D29776E009E17CB = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = E2ZTVSALEB;
+						LastSwiftMigration = 0820;
 						SystemCapabilities = {
 							com.apple.Maps.iOS = {
 								enabled = 0;
@@ -265,11 +270,13 @@
 					2559EF431D29776E009E17CB = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = E2ZTVSALEB;
+						LastSwiftMigration = 0820;
 						TestTargetID = 2559EF2F1D29776E009E17CB;
 					};
 					2559EF4E1D29776E009E17CB = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = E2ZTVSALEB;
+						LastSwiftMigration = 0820;
 						TestTargetID = 2559EF2F1D29776E009E17CB;
 					};
 				};
@@ -335,7 +342,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		564CBD237C694015F9408BA2 /* [CP] Copy Pods Resources */ = {
@@ -395,7 +402,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		856F0F9276CA0E1BF03B4844 /* [CP] Embed Pods Frameworks */ = {
@@ -411,6 +418,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BikePark/Pods-BikePark-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8B731776670AA3EA038DEE01 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BikeParkUITests/Pods-BikeParkUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		C90904BFDAC7BA6F2C5FA92B /* [CP] Copy Pods Resources */ = {
@@ -440,7 +462,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -452,9 +474,10 @@
 			files = (
 				2559EF361D29776E009E17CB /* ViewController.swift in Sources */,
 				2559EF341D29776E009E17CB /* AppDelegate.swift in Sources */,
-				25DF9B3D1D2AAB6800848364 /* Location.swift in Sources */,
+				259773351E13BF830030F0DA /* LocationManager.swift in Sources */,
 				2548C3741D2D1CE400E8D261 /* SearchResultsController.swift in Sources */,
-				25A14E691D2A9E66000D8B90 /* JSONParser.swift in Sources */,
+				253AA3C31E12F7B600563F08 /* Map.swift in Sources */,
+				259773391E13D0830030F0DA /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -523,8 +546,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -569,8 +594,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -589,6 +616,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -598,12 +626,14 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = CD0AFF40C36378D5D913A5A0 /* Pods-BikePark.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = BikePark/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "James-Cox.BikePark";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -611,12 +641,14 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A0C9996B88E0E459A038B634 /* Pods-BikePark.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = BikePark/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "James-Cox.BikePark";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -629,6 +661,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "James-Cox.BikeParkTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BikePark.app/BikePark";
 			};
 			name = Debug;
@@ -642,6 +675,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "James-Cox.BikeParkTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BikePark.app/BikePark";
 			};
 			name = Release;
@@ -654,6 +688,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "James-Cox.BikeParkUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = BikePark;
 			};
 			name = Debug;
@@ -666,6 +701,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "James-Cox.BikeParkUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = BikePark;
 			};
 			name = Release;
