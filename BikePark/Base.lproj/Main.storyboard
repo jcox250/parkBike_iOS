@@ -33,16 +33,9 @@
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Yod-dJ-a3f" secondAttribute="bottom" id="ZKI-d2-VaO"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="BikePark" id="cYk-dE-n8m">
-                        <barButtonItem key="rightBarButtonItem" systemItem="search" id="ndB-cX-wzI">
-                            <connections>
-                                <action selector="searchWithAddress:" destination="BYZ-38-t0r" id="XCz-hT-gRj"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="BikePark" id="cYk-dE-n8m"/>
                     <connections>
                         <outlet property="mapView" destination="Yod-dJ-a3f" id="pjw-0w-Ehi"/>
-                        <outlet property="searchBar" destination="ndB-cX-wzI" id="N4F-ZG-JrP"/>
                         <outlet property="searchDisplayController" destination="YQG-9L-MQK" id="M8Z-Gb-9mv"/>
                     </connections>
                 </viewController>
@@ -74,12 +67,56 @@
             </objects>
             <point key="canvasLocation" x="-125.5" y="338.5"/>
         </scene>
+        <!--Location Search Table-->
+        <scene sceneID="eoo-p3-zB2">
+            <objects>
+                <tableViewController storyboardIdentifier="LocationSearchTable" id="d7o-pA-AHo" customClass="LocationSearchTable" customModule="BikePark" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="xEl-3H-bl2">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" textLabel="n4I-0W-qzX" detailTextLabel="IfP-NN-IG9" style="IBUITableViewCellStyleSubtitle" id="U6x-yr-zTv">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="U6x-yr-zTv" id="0i5-UC-bVX">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="n4I-0W-qzX">
+                                            <rect key="frame" x="15" y="5" width="33.5" height="20.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="IfP-NN-IG9">
+                                            <rect key="frame" x="15" y="25.5" width="44" height="14.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="d7o-pA-AHo" id="1yI-Tp-POs"/>
+                            <outlet property="delegate" destination="d7o-pA-AHo" id="XuH-Hw-ITY"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gBh-Tp-cG7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="689" y="338"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="maQ-H8-BAt">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="bAM-aQ-aEO" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="CeE-hN-hfO">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="CeE-hN-hfO">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

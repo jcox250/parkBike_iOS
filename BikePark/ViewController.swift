@@ -12,155 +12,139 @@ import Alamofire
 import CoreLocation
 import MapKit
 
+protocol HandleMapSearch: class {
+    func dropPinZoomIn(_ placemark:MKPlacemark)
+}
 
-class ViewController: UIViewController, UISearchBarDelegate, LocateOnTheMap, CLLocationManagerDelegate {
+class ViewController: UIViewController, UISearchBarDelegate {
     
     //MARK: Properties
     @IBOutlet var mapView: MKMapView!
-    @IBOutlet weak var searchBar: UIBarButtonItem!
     
-    var searchResultController: SearchResultsController!
-    var resultsArray = [String]()
-    
+    var selectedPin: MKPlacemark?
+    var resultSearchController: UISearchController!
+    let locationManager = CLLocationManager()
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let coreLocation = CLLocationManager()
-        let locationManager = LocationManager(coreLocation: coreLocation)
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.requestLocation()
         
-        locationManager.RequestUserLocation()
-        let locationServicesEnabled = locationManager.LocationServicesEnabled()
-        
-        //If location services are enabled get users location and configure
-        //the map for the users location
-        if (locationServicesEnabled) {
-            let userLat = locationManager.GetUserLatitude()
-            let userLon = locationManager.GetUserLongitude()
-            let location = CLLocationCoordinate2D(latitude: userLat, longitude: userLon)
-            let map = Map(mapView: mapView, latitudeDelta: 0.05, longitudeDelta: 0.05, showUserLocation: true, mapAnimated: true)
-            map.ConfigureMap(location: location)
+        //GET request to JSON data containing locations for map markers
+        Alamofire.request(Constants.API.url).responseJSON { response in
+            let jsonResult = response.result.value
             
-            
-            //GET request to JSON data containing locations for map markers
-            Alamofire.request(Constants.API.url).responseJSON { response in
-                let jsonResult = response.result.value
+            for res in jsonResult as! [AnyObject] {
+                let descript = res["rack_description"] as? String
+                let latitude = res["rack_latitude"] as? String
+                let longitude = res["rack_longitude"] as? String
                 
-                for res in jsonResult as! [AnyObject] {
-                    let descript = res["rack_description"] as? String
-                    let latitude = res["rack_latitude"] as? String
-                    let longitude = res["rack_longitude"] as? String
-                    
-                    let latDegrees = CLLocationDegrees(latitude!)
-                    let lonDegrees = CLLocationDegrees(longitude!)
-                    
-                    let marker = MKPointAnnotation()
-                    marker.coordinate = CLLocationCoordinate2D(latitude: latDegrees!, longitude: lonDegrees!)
-                    marker.title = descript
-                    map.PlaceMarker(marker: marker)
-                }
+                let latDegrees = CLLocationDegrees(latitude!)
+                let lonDegrees = CLLocationDegrees(longitude!)
+                
+                let marker = MKPointAnnotation()
+                marker.coordinate = CLLocationCoordinate2D(latitude: latDegrees!, longitude: lonDegrees!)
+                marker.title = descript
+                self.mapView.addAnnotation(marker)
             }
         }
-    }//Viewdidload
-    
-    
-    
 
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(true)
         
-        searchResultController = SearchResultsController()
-        searchResultController.delegate = self
+        let locationSearchTable = storyboard!.instantiateViewController(withIdentifier: "LocationSearchTable") as! LocationSearchTable
+        resultSearchController = UISearchController(searchResultsController: locationSearchTable)
+        resultSearchController.searchResultsUpdater = locationSearchTable
+        
+        let searchBar = resultSearchController!.searchBar
+        searchBar.sizeToFit()
+        searchBar.placeholder = "Search for places"
+        navigationItem.titleView = resultSearchController?.searchBar
+        resultSearchController.hidesNavigationBarDuringPresentation = false
+        resultSearchController.dimsBackgroundDuringPresentation = true
+        definesPresentationContext = true
+        locationSearchTable.mapView = mapView
+        locationSearchTable.handleMapSearchDelegate = self
+        
+    
     }
     
-    
-    
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func getDirections(){
+        guard let selectedPin = selectedPin else { return }
+        let mapItem = MKMapItem(placemark: selectedPin)
+        let launchOptions = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving]
+        mapItem.openInMaps(launchOptions: launchOptions)
     }
+}
+
+extension ViewController : CLLocationManagerDelegate {
     
-    
-    
-    @IBAction func searchWithAddress(_ sender: AnyObject) {
-        //        let searchController = GMSAutocompleteViewController()
-        //        searchController.delegate = self
-        //        self.presentViewController(searchController, animated: true, completion: nil)
-        
-        let searchController = UISearchController(searchResultsController: searchResultController)
-        searchController.searchBar.delegate = self
-        self.present(searchController, animated: true, completion: nil)
-    }
-    
-    
-    
-    func locateWithLongitude(_ lon: Double, andLatitude lat: Double, andTitle title: String) {
-        
-        DispatchQueue.main.async { () -> Void in
-            let position = CLLocationCoordinate2DMake(lat, lon)
-            
-            let span = MKCoordinateSpanMake(0.01, 0.01)
-            let region = MKCoordinateRegion(center: position, span: span)
-            self.mapView.setRegion(region, animated: true)
-            
-            let marker = MKPointAnnotation()
-                marker.coordinate = position
-                marker.title = "Address: \(title)"
-            
-            self.mapView.addAnnotation(marker)
-    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        if status == .authorizedWhenInUse {
+            locationManager.requestLocation()
         }
     }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let location = locations.first else { return }
+        let span = MKCoordinateSpanMake(0.05, 0.05)
+        let region = MKCoordinateRegion(center: location.coordinate, span: span)
+        mapView.setRegion(region, animated: true)
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("error:: \(error)")
+    }
+    
+}
 
+extension ViewController: HandleMapSearch {
     
-    
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+    func dropPinZoomIn(_ placemark: MKPlacemark){
+        // cache the pin
+        selectedPin = placemark
+        // clear existing pins
+        mapView.removeAnnotations(mapView.annotations)
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = placemark.coordinate
+        annotation.title = placemark.name
         
-        //let placeClient = GMSPlacesClient()
-        //placeClient.autocompleteQuery(searchText, bounds: nil, filter: nil) { (results, error: NSError?) -> Void in
-            
-//            self.resultsArray.removeAll()
-//            if results == nil {
-//                return
-//            }
-//            
-//            for result in results! {
-//                if let result = result as? GMSAutocompletePrediction {
-//                    self.resultsArray.append(result.attributedFullText.string)
-//                }
-//            }
-//            
-//            self.searchResultController.reloadDataWithArray(self.resultsArray)
-        //}
+        if let city = placemark.locality,
+            let state = placemark.administrativeArea {
+            annotation.subtitle = "\(city) \(state)"
+        }
+        
+        mapView.addAnnotation(annotation)
+        let span = MKCoordinateSpanMake(0.025, 0.025)
+        let region = MKCoordinateRegionMake(placemark.coordinate, span)
+        mapView.setRegion(region, animated: true)
     }
+    
+}
 
+extension ViewController : MKMapViewDelegate {
+    
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView?{
+        
+        guard !(annotation is MKUserLocation) else { return nil }
+        let reuseId = "pin"
+        var pinView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseId) as? MKPinAnnotationView
+        if pinView == nil {
+            pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
+        }
+        pinView?.pinTintColor = UIColor.orange
+        pinView?.canShowCallout = true
+        let smallSquare = CGSize(width: 30, height: 30)
+        let button = UIButton(frame: CGRect(origin: CGPoint.zero, size: smallSquare))
+        button.setBackgroundImage(UIImage(named: "bike"), for: UIControlState())
+        button.addTarget(self, action: #selector(ViewController.getDirections), for: .touchUpInside)
+        pinView?.leftCalloutAccessoryView = button
+        
+        return pinView
+    }
 }
 
 
-
-
-
-extension ViewController: GMSAutocompleteViewControllerDelegate {
-    
-    // Handle the user's selection.
-    func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
-        print("Place name: \(place.name)")
-        print("Place address: \(place.formattedAddress)")
-        print("Place attributions: \(place.attributions)")
-        self.dismiss(animated: true, completion: nil)
-    }
-    
-    func viewController(_ viewController: GMSAutocompleteViewController, didFailAutocompleteWithError error: Error) {
-        // TODO: handle the error.
-        print("Error: \(error.localizedDescription )")
-        self.dismiss(animated: true, completion: nil)
-    }
-    
-    // User canceled the operation.
-    func wasCancelled(_ viewController: GMSAutocompleteViewController) {
-        print("Autocomplete was cancelled.")
-        self.dismiss(animated: true, completion: nil)
-    }
-}
 
