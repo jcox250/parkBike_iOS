@@ -16,6 +16,6 @@ class Constants {
     }
     
     struct API {
-        static let url: String = "http://jcoxcv.com/service.php"
+        static let url: String = "http://localhost:5000/racks"
     }
 }

@@ -39,15 +39,17 @@ class ViewController: UIViewController, UISearchBarDelegate {
             let jsonResult = response.result.value
             
             for res in jsonResult as! [AnyObject] {
-                let descript = res["rack_description"] as? String
-                let latitude = res["rack_latitude"] as? String
-                let longitude = res["rack_longitude"] as? String
+                print(res["latitude"])
+              
+                let descript = res["description"] as! String
+                let latitude = res["latitude"] as! Double
+                let longitude = res["longitude"] as! Double
                 
-                let latDegrees = CLLocationDegrees(latitude!)
-                let lonDegrees = CLLocationDegrees(longitude!)
+                let latDegrees = CLLocationDegrees(latitude)
+                let lonDegrees = CLLocationDegrees(longitude)
                 
                 let marker = MKPointAnnotation()
-                marker.coordinate = CLLocationCoordinate2D(latitude: latDegrees!, longitude: lonDegrees!)
+                marker.coordinate = CLLocationCoordinate2D(latitude: latDegrees, longitude: lonDegrees)
                 marker.title = descript
                 self.mapView.addAnnotation(marker)
             }
@@ -89,7 +91,7 @@ extension ViewController : CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let location = locations.first else { return }
-        let span = MKCoordinateSpanMake(0.05, 0.05)
+        let span = MKCoordinateSpanMake(0.04, 0.04)
         let region = MKCoordinateRegion(center: location.coordinate, span: span)
         mapView.setRegion(region, animated: true)
     }
@@ -138,7 +140,7 @@ extension ViewController : MKMapViewDelegate {
         pinView?.canShowCallout = true
         let smallSquare = CGSize(width: 30, height: 30)
         let button = UIButton(frame: CGRect(origin: CGPoint.zero, size: smallSquare))
-        button.setBackgroundImage(UIImage(named: "bike"), for: UIControlState())
+        button.setBackgroundImage(UIImage(named: "car"), for: UIControlState())
         button.addTarget(self, action: #selector(ViewController.getDirections), for: .touchUpInside)
         pinView?.leftCalloutAccessoryView = button
         
